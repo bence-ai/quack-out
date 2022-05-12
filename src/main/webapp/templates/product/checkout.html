@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <div th:insert="head.html :: copy">...</div>
+  <title>QuackOut - CheckOut</title>
+  <!-- End of Bootstrap components -->
+  <script type="application/javascript" src="/static/js/cartReview.js" defer></script>
+  <link rel="stylesheet" type="text/css" href="/static/css/cart.css" />
+
+</head>
+<body>
+
+<div class="container mt-5 px-5">
+  <div class="mb-4">
+    <h1>Checkout page</h1> <p>please type your billing data</p>
+  </div>
+<form action="/payment">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="card p-3">
+        <h6 class="text-uppercase">Personal Data</h6>
+        <div class="row mt-3">
+          <div class="col-md-6">
+            <div class="inputbox mt-3 mr-2"> <span>First Name </span><input type="text" name="first-name" class="form-control" required="required">  </div>
+          </div>
+          <div class="col-md-6">
+            <div class="inputbox mt-3 mr-2"> <span>Last Name</span><input type="text" name="last-name" class="form-control" required="required">  </div>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-6">
+            <div class="inputbox mt-3 mr-2"> <span>E-mail address</span><input type="email" name="e-mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="form-control" required="required">  </div>
+          </div>
+          <div class="col-md-6">
+            <div class="inputbox mt-3 mr-2"> <span>Phone number</span><input type="tel" name="phone" class="form-control" required="required">  </div>
+          </div>
+        </div>
+
+        <div class="mt-4 mb-4">
+          <h6 class="text-uppercase">Billing Address</h6>
+          <div class="row mt-3">
+            <div class="col-md-6">
+              <div class="inputbox mt-3 mr-2"> <span>Street Address</span><input type="text" name="street" class="form-control" required="required">  </div>
+            </div>
+            <div class="col-md-6">
+              <div class="inputbox mt-3 mr-2"> <span>City</span><input type="text" name="city" class="form-control" required="required">  </div>
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-md-6">
+              <div class="inputbox mt-3 mr-2"><span>State/Province</span> <input type="text" name="state" class="form-control" required="required">  </div>
+            </div>
+            <div class="col-md-6">
+              <div class="inputbox mt-3 mr-2"><span>Zip code</span> <input type="number" name="zip"  class="form-control" required="required">  </div>
+            </div>
+          </div>
+        </div>
+        <button type="submit" id="payment-btn" class="btn btn-success">Go to Payment</button>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card card-blue p-3 text-green mb-3" >   <span>You have to pay</span>
+        <div class="d-flex flex-row align-items-end mb-3">
+          <h2 class="display-8" th:text="${totalPrice} + ' &dollar;'">Total Price: 00.00 &dollar;</h2>
+
+        </div> <span> </span>
+        <div class="highlight"> <span>100% Guaranteed support for the next 5 years.</span>
+          </div>
+      </div>
+    </div>
+  </div>
+
+  </form>
+</div>
+</body>
+</html>

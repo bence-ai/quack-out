@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:insert="head.html :: copy">...</div>
+    <title>QuackOut</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/custom.css" />
+</head>
+
+<body>
+<header>
+    <div th:insert="header.html :: copy">...</div>
+</header>
+
+<div class="welcome">
+    <h1 th:text="'Thank you for your order ' + ${order.getFirstName()} + ' ' + ${order.getLastName()} + '!'">Thank you for your order!</h1>
+    <h3>We will send you the confirmation e-mail.</h3>
+    <a class="duck-button" href="/products">Continue shopping<i class="fa fa-egg"></i> </a>
+    <img th:attr="src='/static/img/big-duck.png'">
+</div>
+
+</body>
+</html>

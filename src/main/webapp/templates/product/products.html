@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:insert="head.html :: copy">...</div>
+    <title>QuackOut - All products</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/custom.css" />
+</head>
+
+<body>
+<header>
+    <div th:insert="header.html :: copy">...</div>
+</header>
+
+<div class="filter-products">
+    <h3>Filter ducks:</h3>
+
+    <label for="categories">Filter by category:</label>
+    <select id="categories" onchange="location = '/products?category=' + this.value;">
+        <option disabled selected value> -- select a category -- </option>
+        <option value="1">Simple Color Ducks</option>
+        <option value="2">Star Wars Collection</option>
+        <option value="3">Rock Stars Collection</option>
+    </select>
+
+    <label for="suppliers">Filter by supplier:</label>
+    <select id="suppliers" onchange="location = '/products?supplier=' + this.value;">
+        <option disabled selected value> -- select a supplier -- </option>
+        <option value="1">Rubber Factory</option>
+        <option value="2">Quack Quack</option>
+    </select>
+    <a href="/products">Show all</a>
+</div>
+
+<div class="product-container">
+<div class="all-products">
+    <div th:each="category,iterStat : ${categories}">
+        <div class="decor-line"></div>
+        <div class="card">
+            <h3 th:text="${category.name}">Category Title</h3>
+            <p th:text="${category.description}">Category Title</p>
+        </div>
+
+        <div id="products" class="row">
+            <div class="col col-sm-12 col-md-6 col-lg-4" th:each="prod,iterStat : ${category.getProducts()}">
+                <div class="card">
+                    <img class="product_image" th:attr="src='/static/img/' + ${prod.imageName}" alt="" />
+                    <div class="card-header">
+                        <h4 class="card-title" th:text="${prod.name}">Product name</h4>
+                        <p class="card-text" th:text="${prod.description}">Product description... </p>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-text">
+                            <p class="lead" th:text="${prod.getPrice()}">100 USD</p>
+                        </div>
+                        <div class="card-text">
+                            <a class="btn add-cart" id="add-cart" th:data-product_id="${prod.getId()}" >Add to cart</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+</body>
+</html>

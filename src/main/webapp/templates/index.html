@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:insert="head.html :: copy">...</div>
+    <title>QuackOut</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/custom.css" />
+</head>
+
+<body>
+<header>
+<div th:insert="header.html :: copy">...</div>
+</header>
+
+<div class="welcome">
+    <h1>Welcome on Quack Out!</h1>
+    <a class="duck-button" href="/products">See all producks <i class="fa fa-egg"></i> </a>
+    <img th:attr="src='/static/img/big-duck.png'" class="big-duck">
+</div>
+
+<div class="container">
+    <div class="card">
+        <h3 class="categoryTitle" th:text="${category.name}">Category Title</h3><br>
+        <p class="categoryDescription" th:text="${category.description}">Category description</p>
+    </div>
+
+    <div id="products" class="row">
+        <div class="col col-sm-12 col-md-6 col-lg-4" th:each="prod,iterStat : ${products}">
+            <div class="card">
+                <img class="product_image" th:attr="src='/static/img/' + ${prod.imageName}" alt="" />
+                <div class="card-header">
+                    <h4 class="card-title" th:text="${prod.name}">Product name</h4>
+                    <p class="card-text" th:text="${prod.description}">Product description... </p>
+                </div>
+                <div class="card-body">
+                    <div class="card-text">
+                        <p class="lead" th:text="${prod.getPrice()}">100 USD</p>
+                    </div>
+                    <div class="card-text">
+                        <a class="btn add-cart" id="add-cart" th:data-product_id="${prod.getId()}">Add to cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

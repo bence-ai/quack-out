@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<script type="application/javascript" src="/static/js/login.js" defer></script>
+
+<body>
+
+<div th:fragment="copy">
+
+  <div class="jumbotron text-center">
+    <a href="/"><img th:attr="src='/static/img/logo.png'" class="logo"></a>
+
+    <div>
+      <h5 th:if="${session.containsKey('userName')}" th:text="${session.userName}"></h5>
+      <h5 th:if="${session.containsKey('wrongUser')}" th:text="${session.wrongUser}"></h5>
+      <h5 th:if="${session.containsKey('wrongPass')}" th:text="${session.wrongPass}"></h5>
+      <h5 th:if="${session.containsKey('userTaken')}" th:text="${session.userTaken}"></h5>
+
+    </div>
+    <div class="cart-container">
+      <a type="button" class="cart" href="/cart">
+        <i class="fa fa-shopping-cart"></i>
+      </a>
+      <button type="button" class="cart-numbers" th:text="${items}">
+      </button>
+    </div>
+    <div class="dropdown-content">
+      <a> Empty cart </a>
+    </div>
+  </div>
+
+  <a th:if="${!session.userName}" id="registerButton" class="btn register" href="#" th:text="Register" ></a>
+  <a th:if="${!session.userName}"  id="loginButton" class="btn register" href="#" th:text="Login"></a>
+  <a th:if="${session.userName}"  id="logoutButton" class="btn register" href="/logout" th:text="Logut"></a>
+<!--  <a id="logoutButton" class="btn register" href="/logout" th:if="${session.isEmpty()}" th:text="Logut"></a>-->
+
+
+  <!-- Registration Modal -->
+
+  <div id="registerModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="close">&times;</span>
+        <h2 id="modalHead1">Register</h2>
+      </div>
+      <div class="modal-body">
+        <form id="register-form" method="post" action="/signup">
+          <label >User Name:</label>
+          <input name="username" type="text" autocomplete="username" required><br>
+          <label >Password:</label>
+          <input name="password" type="password" autocomplete="new-password" required><br>
+          <input type="submit" value="Register" class="btn">
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Login Modal -->
+
+
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="close">&times;</span>
+        <h2 id="modalHead2">Login</h2>
+      </div>
+      <div class="modal-body">
+        <form action="/login"  method="post">
+          <label>User Name:</label>
+          <input name="username" type="text" autocomplete="username" required><br>
+          <label>Password:</label>
+          <input name="password" type="password" autocomplete="current-password" required><br>
+          <input type="submit" value="Log me in!" class="btn">
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+</body>
+</html>
